@@ -13,5 +13,15 @@ namespace Repository
 
         public IEnumerable<Account> AccountsByOwner(Guid ownerId) =>
             FindByCondition(a => a.OwnerId.Equals(ownerId)).ToList();
+
+        public Account GetAccountById(Guid accountId)
+        {
+            return FindByCondition(account => account.Id.Equals(accountId))
+                .FirstOrDefault();
+        }
+
+        public void CreateAccount(Account account) => Create(account);
+
+        public void DeleteAccount(Account account) => Delete(account);
     }
 }
